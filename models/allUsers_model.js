@@ -1,15 +1,15 @@
 import { Schema, model } from "mongoose";
 import { toJSON } from "@reis/mongoose-to-json";
 
-const signUpSchema = new Schema({
-    firstName: {type:String, required:true},
-    lastName: {type:String, required:true},
+const allUsersSchema = new Schema({
+    firstName: {type:String},
+    lastName: {type:String},
     email: {type: String, unique:true, required:true},
     password:{type:String, unique:true, required:true}
 }, {
     timestamps:true
 })
 
-signUpSchema.plugin(toJSON)
+allUsersSchema.plugin(toJSON)
 
-export const signUpModel = model('signUp', signUpSchema);
+export const allUsersModel = model('allUser', allUsersSchema);
