@@ -22,6 +22,9 @@ dbConnection();
 app.use(signUpRouter)
 app.use(loginRouter);
 
+expressOasGenerator.handleRequests();
+app.use((req, res) => res.redirect('/api-docs/'));
+
 
 const PORT = 2000;
 
