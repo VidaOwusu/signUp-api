@@ -12,4 +12,4 @@ const allUsersSchema = new Schema({
 
 allUsersSchema.plugin(toJSON)
 
-export const allUsersModel = model('allUser', allUsersSchema);
+export const allUsersModel = model('allUsers', allUsersSchema);

@@ -23,8 +23,9 @@ export const allUsers = async (req, res, next) => {
             const newUser = new allUsersModel({ firstName, lastName, email, password });
             await newUser.save();
 
-            return res.status(201).json({ message: 'User registered successfully', newUser });
+            return res.status(201).json( newUser);
         } catch (error) {
+            next(error)
         }
     } else {
         // Handle Login
@@ -35,7 +36,7 @@ export const allUsers = async (req, res, next) => {
                 return res.status(400).json({ error: ' invalid email or password' });
             }
 
-            return res.status(200).json({ message: 'Login successful', user });
+            return res.status(200).json(user);
         } catch (error) {
             return next(error);
         }
