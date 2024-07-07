@@ -1,6 +1,6 @@
 import express from 'express'
 import { dbConnection } from './config/db.js';
-import { allUsersRouter } from './routes/allUsers_route.js';
+import { UsersRouter } from './routes/allUsers_route.js';
 import expressOasGenerator from "express-oas-generator";
 import mongoose from 'mongoose';
 
@@ -18,7 +18,7 @@ app.use(express.json());
 dbConnection();
 
 
-app.use(allUsersRouter);
+app.use(UsersRouter);
 
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));

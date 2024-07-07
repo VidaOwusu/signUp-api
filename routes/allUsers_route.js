@@ -2,14 +2,14 @@ import { Router } from "express";
 import { allUsers, deleteUser, getUser, getUsers, updateUser } from "../controllers/allUsers_controller.js";
 
 
-export const allUsersRouter = Router();
+export const UsersRouter = Router();
 
-allUsersRouter.post('/users', allUsers);
+UsersRouter.post('/users', allUsers);
 
-allUsersRouter.get('/users', getUsers);
+UsersRouter.get('/users', getUsers);
 
-allUsersRouter.patch('/users/:id', updateUser);
+UsersRouter.patch('/users/:id', updateUser);
 
-allUsersRouter.delete('/users/:id', deleteUser);
+UsersRouter.delete('/users/:id', deleteUser);
 
-allUsersRouter.get('/users/:id', getUser);
+UsersRouter.get('/users/:id', getUser);
