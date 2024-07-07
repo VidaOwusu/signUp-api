@@ -1,32 +1,32 @@
 import { UsersModel } from "../models/allUsers_model.js";
 
 export const allUsers = async (req, res, next) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { email, password, firstName, lastName } = req.body;
 
-    //Check for validation error for the password and email fields
+    // Check for validation errors for the email and password fields
     if (!email) {
         return res.status(400).json({ error: 'Email is required.' });
-    } else if (!password) {
+    }
+    if (!password) {
         return res.status(400).json({ error: 'Password is required.' });
     }
 
-    if (firstName && lastName && email && password) {
-        try {
-            // Check if the user already exists by email
-            const existingUser = await UsersModel.findOne({ email });
-            if (existingUser) {
-                return res.status(400).json({ error: 'User with this email already exists.' });
-            }
-    
-            // Create a new user
-            const newUser = new UsersModel({ firstName, lastName, email, password });
-            await newUser.save();
-    
-            return res.status(201).json(newUser);
-        } catch (error) {
-            next(error);
+    try {
+        // Check if the user already exists by email
+        const existingUser = await UsersModel.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ error: 'User with this email already exists.' });
         }
-}};
+
+        // Create a new user (including optional fields if provided)
+        const newUser = new UsersModel({ firstName, lastName, email, password });
+        await newUser.save();
+
+        return res.status(201).json(newUser);
+    } catch (error) {
+        next(error);
+    }
+};
 
 
 
